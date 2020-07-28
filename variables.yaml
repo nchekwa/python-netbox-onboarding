@@ -1,0 +1,231 @@
+---
+# Edit this file to define the details to configure on Netbox
+
+# netbox vars
+netbox_url: 'http://192.168.254.90/'     # //https is not supported yet
+netbox_token: '678bcbfccbbcb6a59069438b89b5d0f9e4a3081a'
+
+# netbox tenants you want to create.
+tenants: 
+  - name: Administrator
+  - name: CompanyA
+  - name: CompanyB
+  - name: CompanyC
+
+# netbox sites you want to create. the sites are assigned to the tenant.
+# as 'tenant' needs to be id - use .(function) to search id by defined name
+sites:
+  - name: Paris DC1
+    tenant: Administrator
+  - name: Warsaw DC1
+    tenant: Administrator
+
+# netbox device-roles you want to create
+device-roles: 
+  - name: spine_switch
+    vm_role: false
+    color: 0099ff       # blue
+  - name: leaf_switch
+    vm_role: 0
+    color: 00cc00       # green
+
+# Create manufacturers
+# ** Juniper ** manufacturer is created automaticly
+manufacturers:
+  - name: 'Arista'
+  - name: 'Cisco'
+    description: "Cisco Networks"
+
+# Create platform
+# ** Juniper ** Junos platform is created with a junos napalm_driver automaticly
+platforms:
+  - name: cisco
+    napalm_driver: cisco  
+    rpc_client: cisco-ios
+    manufacturer: Cisco
+
+# Create predefined device-types
+# In this API request - name value not exist so we asume that first parameter would be treated as 'name' (->model)
+#
+# ** Juniper ** some devices are automaticly created = check netbox/juniper.py
+device-types:
+  - model: Nexus-9000
+    manufacturer: Cisco
+
+# prefix roles you want to create
+roles: 
+  - name: out_of_band_management
+  - name: devices_interconnection
+
+# prefixes you want to create. 
+prefixes:
+    - prefix: 10.240.40.0/24
+      role: out_of_band_management
+    - prefix: 10.30.20.0/23
+      role: devices_interconnection
+
+# devices you want to create. the devices are assigned to the tenant.
+devices: 
+    - name: Spine-20
+      device_type: vqfx-10000
+      device_role: spine_switch
+      serial: VM0020200000
+      platform: junos
+      site: Warsaw DC1
+    - name: Spine-21
+      device_type: vqfx-10000
+      device_role: spine_switch
+      serial: VM0021210000
+      platform: junos
+      site: Warsaw DC1
+    - name: Leaf-30
+      device_type: vqfx-10000
+      device_role: leaf_switch
+      serial: VM0030300000
+      platform: junos
+      site: Warsaw DC1
+    - name: Leaf-31
+      device_type: vqfx-10000
+      device_role: leaf_switch
+      serial: VM0031310000
+      platform: junos
+      site: Warsaw DC1
+    - name: Leaf-32
+      device_type: vqfx-10000
+      device_role: leaf_switch
+      serial: VM0032320000
+      platform: junos
+      site: Warsaw DC1
+    - name: Leaf-33
+      device_type: vqfx-10000
+      device_role: leaf_switch
+      serial: VM0033330000
+      platform: junos
+      site: Warsaw DC1
+
+
+      
+# management ip addresses you want to create. The IP addresses are assigned to the tenant.
+ip-addresses:
+    - address: 10.240.40.20/22
+      device: Spine-20
+      interface: em0
+      mgmt_only: True
+    - address: 10.240.40.21/22
+      device: Spine-21
+      interface: em0
+      mgmt_only: True
+    - address: 10.240.40.30/22
+      device: Leaf-30
+      interface: em0
+    - address: 10.240.40.31/22
+      device: Leaf-31
+      interface: em0
+    - address: 10.240.40.32/22
+      device: Leaf-32
+      interface: em0
+    - address: 10.240.40.33/22
+      device: Leaf-33
+      interface: em0
+      mgmt_only: True
+    # Other ip addresses you want to create. The IP addresses are assigned to the tenant.
+    - address: 10.30.20.1/30
+      device: Spine-20
+      interface: xe-0/0/0
+    - address: 10.30.20.5/30
+      device: Spine-20
+      interface: xe-0/0/1
+    - address: 10.30.20.9/30
+      device: Spine-20
+      interface: xe-0/0/2
+    - address: 10.30.20.13/30
+      device: Spine-20
+      interface: xe-0/0/3
+    - address: 10.30.21.1/30
+      device: Spine-21
+      interface: xe-0/0/0
+    - address: 10.30.21.5/30
+      device: Spine-21
+      interface: xe-0/0/1
+    - address: 10.30.21.9/30
+      device: Spine-21
+      interface: xe-0/0/2
+    - address: 10.30.21.13/30
+      device: Spine-21
+      interface: xe-0/0/3
+    - address: 10.30.20.2/30
+      device: Leaf-30
+      interface: xe-0/0/0
+    - address: 10.30.21.2/30
+      device: Leaf-30
+      interface: xe-0/0/1
+    - address: 10.30.20.6/30
+      device: Leaf-31
+      interface: xe-0/0/0
+    - address: 10.30.21.6/30
+      device: Leaf-31
+      interface: xe-0/0/1
+    - address: 10.30.20.10/30
+      device: Leaf-32
+      interface: xe-0/0/0
+    - address: 10.30.21.10/30
+      device: Leaf-32
+      interface: xe-0/0/1
+    - address: 10.30.20.14/30
+      device: Leaf-33
+      interface: xe-0/0/0
+    - address: 10.30.21.14/30
+      device: Leaf-33
+      interface: xe-0/0/1
+
+# define how the interfaces are connected (physical topology). 
+# types: cat3, cat5, cat5e, cat6, cat6a, cat7, dac-active, dac-passive, mrj21-trunk, coaxial, mmf, mmf-om1, mmf-om2, mmf-om3, mmf-om4, smf, smf-os1, smf-os2, aoc, power 
+cables:
+    - termination_a_id: xe-0/0/0@Spine-20
+      termination_a_type: 'dcim.interface'
+      termination_b_id: xe-0/0/0@Leaf-30
+      termination_b_type: 'dcim.interface'
+      type: "smf-os2"
+      status: connected
+    - termination_a_id: xe-0/0/1@Spine-20
+      termination_a_type: 'dcim.interface'
+      termination_b_id: xe-0/0/0@Leaf-31
+      termination_b_type: 'dcim.interface'
+      type: "smf-os2"
+      status: connected
+    - termination_a_id: xe-0/0/2@Spine-20
+      termination_a_type: 'dcim.interface'
+      termination_b_id: xe-0/0/0@Leaf-32
+      termination_b_type: 'dcim.interface'
+      type: "smf-os2"
+      status: connected
+    - termination_a_id: xe-0/0/3@Spine-20
+      termination_a_type: 'dcim.interface'
+      termination_b_id: xe-0/0/0@Leaf-33
+      termination_b_type: 'dcim.interface'
+      type: "smf-os2"
+      status: connected
+    - termination_a_id: xe-0/0/0@Spine-21
+      termination_a_type: 'dcim.interface'
+      termination_b_id: xe-0/0/1@Leaf-30
+      termination_b_type: 'dcim.interface'
+      type: "smf-os2"
+      status: connected
+    - termination_a_id: xe-0/0/1@Spine-21
+      termination_a_type: 'dcim.interface'
+      termination_b_id: xe-0/0/1@Leaf-31
+      termination_b_type: 'dcim.interface'
+      type: "smf-os2"
+      status: connected
+    - termination_a_id: xe-0/0/2@Spine-21
+      termination_a_type: 'dcim.interface'
+      termination_b_id: xe-0/0/1@Leaf-32
+      termination_b_type: 'dcim.interface'
+      type: "smf-os2"
+      status: connected
+    - termination_a_id: xe-0/0/3@Spine-21
+      termination_a_type: 'dcim.interface'
+      termination_b_id: xe-0/0/1@Leaf-33
+      termination_b_type: 'dcim.interface'
+      type: "smf-os2"
+      status: connected
