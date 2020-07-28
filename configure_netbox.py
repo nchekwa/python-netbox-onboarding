@@ -20,7 +20,9 @@ import requests
 import json
 import yaml
 import time
-import _thread
+import netbox
+from netbox import *
+
 
 # Innit global config modular share
 import config.settings
@@ -30,8 +32,6 @@ config.settings.yaml = Yaml('variables.yaml').import_variables_from_file()
 config.settings.init_http_header()
 
 
-import netbox
-from netbox import *
 
 
 netbox.juniper.Provision()
