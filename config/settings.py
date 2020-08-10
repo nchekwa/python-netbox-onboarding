@@ -11,3 +11,10 @@ def init():
     rest = {}
 
 
+def init_http_header():
+    global headers
+    headers={
+        'Authorization': 'Token ' + yaml['netbox_token'],
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
