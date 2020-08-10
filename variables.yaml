@@ -22,10 +22,10 @@ sites:
 
 # netbox device-roles you want to create
 device-roles: 
-  - name: spine_switch
+  - name: spine
     vm_role: false
     color: 0099ff       # blue
-  - name: leaf_switch
+  - name: leaf
     vm_role: 0
     color: 00cc00       # green
 
@@ -71,42 +71,42 @@ prefixes:
 devices: 
     - name: Spine-20
       device_type: vqfx-10000
-      device_role: spine_switch
+      device_role: spine
       serial: VM0020200000
       platform: junos
       site: Warsaw DC1
       local_context_data: {autonomous_system: 65020}
     - name: Spine-21
       device_type: vqfx-10000
-      device_role: spine_switch
+      device_role: spine
       serial: VM0021210000
       platform: junos
       site: Warsaw DC1
       local_context_data: {autonomous_system: 65021}
     - name: Leaf-30
       device_type: vqfx-10000
-      device_role: leaf_switch
+      device_role: leaf
       serial: VM0030300000
       platform: junos
       site: Warsaw DC1
       local_context_data: {autonomous_system: 65030}
     - name: Leaf-31
       device_type: vqfx-10000
-      device_role: leaf_switch
+      device_role: leaf
       serial: VM0031310000
       platform: junos
       site: Warsaw DC1
       local_context_data: {autonomous_system: 65031}
     - name: Leaf-32
       device_type: vqfx-10000
-      device_role: leaf_switch
+      device_role: leaf
       serial: VM0032320000
       platform: junos
       site: Warsaw DC1
       local_context_data: {autonomous_system: 65032}
     - name: Leaf-33
       device_type: vqfx-10000
-      device_role: leaf_switch
+      device_role: leaf
       serial: VM0033330000
       platform: junos
       site: Warsaw DC1
