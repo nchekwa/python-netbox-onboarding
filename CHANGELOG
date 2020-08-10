@@ -1,0 +1,11 @@
+# v.0.1 [20200728]
+First Release
+
+
+
+
+
+
+
+ToDo:
+- we create device and then create IP assign to managment interface - needs to be added function _update to assign IP as device managment IP
