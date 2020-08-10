@@ -139,23 +139,23 @@ ip-addresses:
       device: Leaf-33
       interface: em0
       mgmt_only: True
-    # loopback
-    - address: 10.64.0.20/30
-      device: Leaf-20
+    # loopback (remember /32)
+    - address: 10.64.0.20/32
+      device: Spine-20
       interface: lo0
-    - address: 10.64.0.21/30
-      device: Leaf-21
+    - address: 10.64.0.21/32
+      device: Spine-21
       interface: lo0
-    - address: 10.64.0.30/30
+    - address: 10.64.0.30/32
       device: Leaf-30
       interface: lo0
-    - address: 10.64.0.31/30
+    - address: 10.64.0.31/32
       device: Leaf-31
       interface: lo0
-    - address: 10.64.0.32/30
+    - address: 10.64.0.32/32
       device: Leaf-32
       interface: lo0
-    - address: 10.64.0.33/30
+    - address: 10.64.0.33/32
       device: Leaf-33
       interface: lo0
     # devices_interconnection
