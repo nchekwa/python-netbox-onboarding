@@ -21,7 +21,7 @@ usage: configure_netbox.py [-h] [-c CONFIG]
 optional arguments:
   -h, --help            show this help message and exit
   -c CONFIG, --config CONFIG
-                        YAML File with configuration
+                        YAML File with configuration (default='config/variables.yaml')
 ```
 
 ![Example1](doc/img/example_2.png)
