@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
     # 5) ie. junos
     netbox.create('api/dcim/platforms/')
-
+    
     # 6) ie. vqfx-10000
     netbox.create('api/dcim/device-types/')
 

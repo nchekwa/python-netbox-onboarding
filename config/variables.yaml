@@ -6,7 +6,7 @@ netbox_url: 'http://192.168.254.90/'     # //https is not supported yet
 netbox_token: '678bcbfccbbcb6a59069438b89b5d0f9e4a3081a'
 
 # netbox tenants you want to create.
-tenants: 
+tenants:
   - name: Administrator
   - name: CompanyA
   - name: CompanyB
@@ -75,42 +75,48 @@ devices:
       serial: VM0020200000
       platform: junos
       site: Warsaw DC1
-      local_context_data: {autonomous_system: 65020}
+      local_context_data:
+        asn_underlay: 65020
     - name: Spine-21
       device_type: vqfx-10000
       device_role: spine
       serial: VM0021210000
       platform: junos
       site: Warsaw DC1
-      local_context_data: {autonomous_system: 65021}
+      local_context_data:
+        asn_underlay: 65021
     - name: Leaf-30
       device_type: vqfx-10000
       device_role: leaf
       serial: VM0030300000
       platform: junos
       site: Warsaw DC1
-      local_context_data: {autonomous_system: 65030}
+      local_context_data:
+        asn_underlay: 65030
     - name: Leaf-31
       device_type: vqfx-10000
       device_role: leaf
       serial: VM0031310000
       platform: junos
       site: Warsaw DC1
-      local_context_data: {autonomous_system: 65031}
+      local_context_data:
+        asn_underlay: 65031
     - name: Leaf-32
       device_type: vqfx-10000
       device_role: leaf
       serial: VM0032320000
       platform: junos
       site: Warsaw DC1
-      local_context_data: {autonomous_system: 65032}
+      local_context_data:
+        asn_underlay: 65032
     - name: Leaf-33
       device_type: vqfx-10000
       device_role: leaf
       serial: VM0033330000
       platform: junos
       site: Warsaw DC1
-      local_context_data: {autonomous_system: 65033}
+      local_context_data:
+        asn_underlay: 65033
 
 # The IP addresses are assigned to the tenant.
 ip-addresses:

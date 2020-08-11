@@ -91,6 +91,8 @@ def create(urn, payload_object=None):
                 if(parameter == 'role' ):
                     payload[parameter] = str(query('api/ipam/roles/',item.get(parameter),'id'))
 
+                if(parameter == 'local_context_data' ):
+                    payload[parameter] = json.dumps(item.get(parameter))
         #print(payload)
 
         # In some models - name parameter not exist.. (ie. device-types create)
