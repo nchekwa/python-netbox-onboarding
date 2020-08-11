@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     # Create pre-defined Juniper Manufacture/Devices
     netbox.juniper.Provision()
-
+    
     # 1) Create Tenants: CompanyA/B
     netbox.create('api/tenancy/tenants/')
 
@@ -70,6 +70,6 @@ if __name__ == "__main__":
 
     # 9)
     netbox.create('api/ipam/ip-addresses/')
-
+    
     # 10)
     netbox.create('api/dcim/cables/')

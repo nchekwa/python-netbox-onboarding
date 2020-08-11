@@ -122,6 +122,11 @@ def create(urn, payload_object=None):
         if rest_call.status_code == 201:
             print ('\033[92m[ok]    \033[0m ' + option + ': \033[1m' + item['name'] + '\033[0m successfully created')
             
+            ##########################################################################################################
+            #
+            # Additional jobs after create some elements
+            #
+            ##########################################################################################################
             # If IP was created for device / and if it is managment -> add this IP as primary_ipv4 in device
             if option == "ip-addresses" and payload.get("status") == "active" and payload.get("mgmt_only") == True :
                 ip = query('api/ipam/ip-addresses/',item.get('address'))
@@ -132,6 +137,31 @@ def create(urn, payload_object=None):
                     device_payload['primary_ip4'] = ip['id']
                     patch('api/dcim/devices/',device_payload)
                     pass
+            
+            # If we create cable connection for interconnect - we need to update interfaces descriptions on each device and set MTU9192
+            if option == "cables" and payload.get("label") == "interconnect":
+                termination_a_id = query('api/dcim/interfaces/',item.get('termination_a_id'),'id')
+                termination_b_id = query('api/dcim/interfaces/',item.get('termination_b_id'),'id')
+
+                print('[update] interface: '+payload_orig['termination_a_id'] )
+                if_a_payload = dict()
+                if_a_payload['id'] = termination_a_id
+                if_a_payload['mtu'] = 9192
+                if_a_payload['tag'] = 'interconnect'
+                if_a_payload['description'] = str('*** '+payload_orig['termination_a_id']+'<--|-->'+ payload_orig['termination_b_id'] +' ***')
+                patch('api/dcim/interfaces/',if_a_payload)
+
+                print('[update] interface: '+payload_orig['termination_b_id'] )
+                if_b_payload = dict()
+                if_b_payload['id'] = termination_b_id
+                if_b_payload['mtu'] = 9192
+                if_b_payload['tag'] = 'interconnect'
+                if_b_payload['description'] = str('*** '+payload_orig['termination_b_id']+'<--|-->'+ payload_orig['termination_a_id'] +' ***')
+                patch('api/dcim/interfaces/',if_b_payload)
+
+
+            ##########################################################################################################
+
         else:
             print ('\033[91m[failed]\033[0m create ' + option + ' \033[1m' + item['name'] + '\033[0m' )
             if environ.get("DEBUG") is not None:
@@ -209,7 +239,7 @@ def patch(urn,payload=None):
     rest_call = requests.patch(url, headers=netbox.settings.headers, data=json.dumps(payload))
     #print(rest_call.status_code)
     if rest_call.status_code == 200:
-        print ('\033[92m[ok]    \033[0m ' + option + ':  successfully updated')
+        print ('\033[92m[ok]    \033[0m ' + option + ': successfully updated')
     else:
         print ('\033[91m[failed]\033[0m failed to patch ' + option + ' \033[1m' + str(id) + '\033[0m' )
         if environ.get("DEBUG") is not None:

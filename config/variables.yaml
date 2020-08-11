@@ -227,46 +227,54 @@ cables:
       termination_b_type: 'dcim.interface'
       type: "smf-os2"
       status: connected
+      label: interconnect
     - termination_a_id: xe-0/0/1@Spine-20
       termination_a_type: 'dcim.interface'
       termination_b_id: xe-0/0/0@Leaf-31
       termination_b_type: 'dcim.interface'
       type: "smf-os2"
       status: connected
+      label: interconnect
     - termination_a_id: xe-0/0/2@Spine-20
       termination_a_type: 'dcim.interface'
       termination_b_id: xe-0/0/0@Leaf-32
       termination_b_type: 'dcim.interface'
       type: "smf-os2"
       status: connected
+      label: interconnect
     - termination_a_id: xe-0/0/3@Spine-20
       termination_a_type: 'dcim.interface'
       termination_b_id: xe-0/0/0@Leaf-33
       termination_b_type: 'dcim.interface'
       type: "smf-os2"
       status: connected
+      label: interconnect
     - termination_a_id: xe-0/0/0@Spine-21
       termination_a_type: 'dcim.interface'
       termination_b_id: xe-0/0/1@Leaf-30
       termination_b_type: 'dcim.interface'
       type: "smf-os2"
       status: connected
+      label: interconnect
     - termination_a_id: xe-0/0/1@Spine-21
       termination_a_type: 'dcim.interface'
       termination_b_id: xe-0/0/1@Leaf-31
       termination_b_type: 'dcim.interface'
       type: "smf-os2"
       status: connected
+      label: interconnect
     - termination_a_id: xe-0/0/2@Spine-21
       termination_a_type: 'dcim.interface'
       termination_b_id: xe-0/0/1@Leaf-32
       termination_b_type: 'dcim.interface'
       type: "smf-os2"
       status: connected
+      label: interconnect
     - termination_a_id: xe-0/0/3@Spine-21
       termination_a_type: 'dcim.interface'
       termination_b_id: xe-0/0/1@Leaf-33
       termination_b_type: 'dcim.interface'
       type: "smf-os2"
       status: connected
+      label: interconnect
 
