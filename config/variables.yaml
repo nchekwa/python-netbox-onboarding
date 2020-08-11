@@ -64,7 +64,7 @@ prefixes:
       role: out_of_band_management
     - prefix: 10.30.20.0/23
       role: devices_interconnection
-    - prefix: 10.30.20.0/23
+    - prefix: 10.64.0.0/24
       role: loopback
 
 # devices you want to create. the devices are assigned to the tenant.
@@ -115,30 +115,37 @@ devices:
 # The IP addresses are assigned to the tenant.
 ip-addresses:
     # out_of_band_management
+    # if status == "active" (and) mgmt_only == True --> add this as active primary_ipv4 in device
     - address: 10.240.40.20/22
       device: Spine-20
       interface: em0
       mgmt_only: True
+      status: "active"
     - address: 10.240.40.21/22
       device: Spine-21
       interface: em0
       mgmt_only: True
+      status: "active"
     - address: 10.240.40.30/22
       device: Leaf-30
       interface: em0
       mgmt_only: True
+      status: "active"
     - address: 10.240.40.31/22
       device: Leaf-31
       interface: em0
       mgmt_only: True
+      status: "active"
     - address: 10.240.40.32/22
       device: Leaf-32
       interface: em0
       mgmt_only: True
+      status: "active"
     - address: 10.240.40.33/22
       device: Leaf-33
       interface: em0
       mgmt_only: True
+      status: "active"
     # loopback (remember /32)
     - address: 10.64.0.20/32
       device: Spine-20

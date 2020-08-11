@@ -13,9 +13,18 @@ Tested with:<br>
 # Run
 - edit variables (you can add additional parameters from API syntax)
 - run:<br>
-bash# python3 configure_netbox.py
 
-![Screenshot](example_2.png)
-![Screenshot](example_1.png)
+```console
+bash# python3 configure_netbox.py -h
+usage: configure_netbox.py [-h] [-c CONFIG]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -c CONFIG, --config CONFIG
+                        YAML File with configuration
+```
+
+![Example1](doc/img/example_2.png)
+![Example2](doc/img/example_1.png)
 
 'Failed' is only as exemple how script react on existing elements in Netbox

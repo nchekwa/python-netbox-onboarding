@@ -11,9 +11,9 @@ def qfx10002_36q():
         "u_height": 1,
         "manufacturer": 'Juniper'
     }
-    netbox._create('api/dcim/device-types/', device_types)
+    netbox.create('api/dcim/device-types/', device_types)
 
-    device_id = netbox._query('api/dcim/device-types/','qfx10002-36q','id')
+    device_id = netbox.query('api/dcim/device-types/','qfx10002-36q','id')
     ## Power
     # https://www.juniper.net/documentation/en_US/release-independent/junos/topics/topic-map/qfx10002-power-system.html
     power_port = {
@@ -25,7 +25,7 @@ def qfx10002_36q():
     }
     for port in range(0, 4):
         power_port['name'] = 'PEM' + str(port)
-        netbox._create('api/dcim/power-port-templates/', power_port)
+        netbox.create('api/dcim/power-port-templates/', power_port)
 
     ## Interfaces
     # https://www.juniper.net/documentation/en_US/release-independent/junos/topics/topic-map/qfx10002-port-panel.html
@@ -36,7 +36,7 @@ def qfx10002_36q():
         "type": '100base-tx',
         "mgmt_only": 'True'
     }
-    netbox._create('api/dcim/interface-templates/', interface)
+    netbox.create('api/dcim/interface-templates/', interface)
 
     # Loopback 0
     interface={
@@ -45,14 +45,14 @@ def qfx10002_36q():
         "type": 'virtual',
         "mgmt_only": 'False'
     }
-    netbox._create('api/dcim/interface-templates/', interface)
+    netbox.create('api/dcim/interface-templates/', interface)
 
     # Line Interfaces
     interface['type']       = '100gbase-x-qsfp28'
     interface['mgmt_only']  = False
     for port in range(0, 36):
         interface['name'] = 'xe-0/0/' + str(port)
-        netbox._create('api/dcim/interface-templates/', interface)
+        netbox.create('api/dcim/interface-templates/', interface)
 
 
 

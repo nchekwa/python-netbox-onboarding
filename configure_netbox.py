@@ -16,6 +16,7 @@ if environ.get("DEBUG") is not None:
 
 from requests.auth import HTTPBasicAuth
 from pprint import pprint
+import argparse
 import requests
 import json
 import yaml
@@ -24,45 +25,51 @@ import netbox
 from netbox import *
 
 
-# Innit global config modular share
-import config.settings
-from config.yaml import Yaml
-config.settings.init() 
-config.settings.yaml = Yaml('variables.yaml').import_variables_from_file()
-config.settings.init_http_header()
+
+import netbox.settings
+from netbox.yaml import Yaml
 
 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(prog='configure_netbox.py')
+    parser.add_argument('-c', '--config', help='YAML File with configuration', default='config/variables.yaml')
+    args = parser.parse_args()
+    kwargs = vars(args)
+    print('Running. Press CTRL-C to exit.')
 
+    # Innit global config modular share
+    netbox.settings.load_yaml(kwargs['config'])
 
-netbox.juniper.Provision()
+    # Create pre-defined Juniper Manufacture/Devices
+    netbox.juniper.Provision()
 
-# 1) Create Tenants: CompanyA/B
-netbox._create('api/tenancy/tenants/')
+    # 1) Create Tenants: CompanyA/B
+    netbox.create('api/tenancy/tenants/')
 
-# 2) Create site: DC1/DC2
-netbox._create('api/dcim/sites/')
+    # 2) Create site: DC1/DC2
+    netbox.create('api/dcim/sites/')
 
-# 3) Create Device Roles: leaf/spine
-netbox._create('api/dcim/device-roles/')
+    # 3) Create Device Roles: leaf/spine
+    netbox.create('api/dcim/device-roles/')
 
-# 4) ie. Juniper
-netbox._create('api/dcim/manufacturers/')
+    # 4) ie. Juniper
+    netbox.create('api/dcim/manufacturers/')
 
-# 5) ie. junos
-netbox._create('api/dcim/platforms/')
+    # 5) ie. junos
+    netbox.create('api/dcim/platforms/')
 
-# 6) ie. vqfx-10000
-netbox._create('api/dcim/device-types/')
+    # 6) ie. vqfx-10000
+    netbox.create('api/dcim/device-types/')
 
-# 7) Ceate Role leaf_switch / spine
-netbox._create('api/ipam/roles/')
-netbox._create('api/ipam/prefixes/')
+    # 7) Ceate Role leaf_switch / spine
+    netbox.create('api/ipam/roles/')
+    netbox.create('api/ipam/prefixes/')
 
-# 8) 	
-netbox._create('api/dcim/devices/')
+    # 8) 	
+    netbox.create('api/dcim/devices/')
 
-# 9)
-netbox._create('api/ipam/ip-addresses/')
+    # 9)
+    netbox.create('api/ipam/ip-addresses/')
 
-# 10)
-netbox._create('api/dcim/cables/')
+    # 10)
+    netbox.create('api/dcim/cables/')

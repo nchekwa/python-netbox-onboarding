@@ -11,9 +11,9 @@ def vqfx_10000():
         "u_height": 1,
         "manufacturer": 'Juniper'
     }
-    netbox._create('api/dcim/device-types/', device_types)
+    netbox.create('api/dcim/device-types/', device_types)
 
-    device_id = netbox._query('api/dcim/device-types/','vqfx-10000','id')
+    device_id = netbox.query('api/dcim/device-types/','vqfx-10000','id')
     ## Interfaces
     # Managment EM0
     interface={
@@ -22,7 +22,7 @@ def vqfx_10000():
         "type": '1000base-t',
         "mgmt_only": 'True'
     }
-    netbox._create('api/dcim/interface-templates/', interface)
+    netbox.create('api/dcim/interface-templates/', interface)
 
     # Managment EM1
     interface={
@@ -31,7 +31,7 @@ def vqfx_10000():
         "type": '1000base-t',
         "mgmt_only": 'False'
     }
-    netbox._create('api/dcim/interface-templates/', interface)
+    netbox.create('api/dcim/interface-templates/', interface)
 
     # Loopback 0
     interface={
@@ -40,11 +40,11 @@ def vqfx_10000():
         "type": 'virtual',
         "mgmt_only": 'False'
     }
-    netbox._create('api/dcim/interface-templates/', interface)
+    netbox.create('api/dcim/interface-templates/', interface)
 
     # Line Interfaces
     interface['type']       = '10gbase-t'
     interface['mgmt_only']  = False
     for port in range(0, 11):
         interface['name'] = 'xe-0/0/' + str(port)
-        netbox._create('api/dcim/interface-templates/', interface)
+        netbox.create('api/dcim/interface-templates/', interface)

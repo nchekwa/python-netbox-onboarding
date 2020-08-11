@@ -21,30 +21,30 @@ class Provision():
     def __init__(self):
         
         # Ceck If Junier Manufacture exist / if not - create
-        juniper_manufacturer = netbox._query('api/dcim/manufacturers/','Juniper','id')
+        juniper_manufacturer = netbox.query('api/dcim/manufacturers/','Juniper','id')
         if juniper_manufacturer is None:
             manufacturer = {
                 "name": 'Juniper',
                 "description": 'Juniper Networks'
             }
-            netbox._create('api/dcim/manufacturers/', manufacturer)
-            juniper_manufacturer = netbox._query('api/dcim/manufacturers/','Juniper','id')
+            netbox.create('api/dcim/manufacturers/', manufacturer)
+            juniper_manufacturer = netbox.query('api/dcim/manufacturers/','Juniper','id')
 
             platform = {
                 "name": 'junos',
                 "napalm_driver": 'junos',
                 "manufacturer": juniper_manufacturer
             }
-            netbox._create('api/dcim/platforms/', platform)
+            netbox.create('api/dcim/platforms/', platform)
 
 
         ## Device Provisioning
         for type in __all__:
             dev_model = type.replace("_","-")
-            device_id = netbox._query('api/dcim/device-types/', dev_model, 'id')
+            device_id = netbox.query('api/dcim/device-types/', dev_model, 'id')
             if device_id is None:
                 #ie. qfx10002_36q()
                 eval(type)()
 
-
-        #    qfx5100_48s_6q()
+# Need add new device:
+# qfx5100_48s_6q
