@@ -7,8 +7,8 @@ Tested with:<br>
 
 
 # HowTo
-- check diagram folder to see example of topology
-- check 'variables' file to set what you need
+- check diagram folder for topology example
+- check 'config/variables.yaml' file to set what you need
 
 # Run
 - edit variables (you can add additional parameters from API syntax)
