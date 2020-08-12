@@ -1,9 +1,4 @@
 # Release Hostory:
 - v.0.1 [20200728] - First Release
   - 20200810 - one of setting function (init http headers) was rollback + added some additional parameters in demo variable yaml
-
-
-
-
-# ToDo:
-- we create device and then create IP assign to managment interface - needs to be added function _update to assign IP as device managment IP
+  - when create device and then create IP assign to managment interface - _patch automaticly set managment IP under device
