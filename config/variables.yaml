@@ -152,7 +152,7 @@ ip-addresses:
       interface: em0
       mgmt_only: True
       status: "active"
-    # loopback (remember /32)
+    # loopbacks (remember /32)
     - address: 10.64.0.20/32
       device: Spine-20
       interface: lo0
