@@ -76,7 +76,8 @@ devices:
       platform: junos
       site: Warsaw DC1
       local_context_data:
-        asn_underlay: 65020
+        bgp:
+          asn_underlay: 65020
     - name: Spine-21
       device_type: vqfx-10000
       device_role: spine
@@ -84,7 +85,8 @@ devices:
       platform: junos
       site: Warsaw DC1
       local_context_data:
-        asn_underlay: 65021
+        bgp:
+          asn_underlay: 65021
     - name: Leaf-30
       device_type: vqfx-10000
       device_role: leaf
@@ -92,7 +94,8 @@ devices:
       platform: junos
       site: Warsaw DC1
       local_context_data:
-        asn_underlay: 65030
+        bgp:
+          asn_underlay: 65030
     - name: Leaf-31
       device_type: vqfx-10000
       device_role: leaf
@@ -100,7 +103,8 @@ devices:
       platform: junos
       site: Warsaw DC1
       local_context_data:
-        asn_underlay: 65031
+        bgp:
+          asn_underlay: 65031
     - name: Leaf-32
       device_type: vqfx-10000
       device_role: leaf
@@ -108,7 +112,8 @@ devices:
       platform: junos
       site: Warsaw DC1
       local_context_data:
-        asn_underlay: 65032
+        bgp:
+          asn_underlay: 65032
     - name: Leaf-33
       device_type: vqfx-10000
       device_role: leaf
@@ -116,7 +121,8 @@ devices:
       platform: junos
       site: Warsaw DC1
       local_context_data:
-        asn_underlay: 65033
+        bgp:
+          asn_underlay: 65033
 
 # The IP addresses are assigned to the tenant.
 ip-addresses:
