@@ -1,4 +1,5 @@
 # Release Hostory:
 - v.0.1 [20200728] - First Release
-  - 20200810 - one of setting function (init http headers) was rollback + added some additional parameters in demo variable yaml
-  - when create device and then create IP assign to managment interface - _patch automaticly set managment IP under device
+  - 20200810 - def "init http headers" was rollback + added some additional parameters in demo variable yaml
+  - when we create new device, you can't provision Primary Mng IP. It needs to be first create device / then create IP address assign to managment device / 
+    and then this IP can be assign as primary - I implement _patch function which will automaticly set managment IP after create Managment IP assign to em0 Managment Port.
