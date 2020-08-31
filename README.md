@@ -2,7 +2,7 @@
 Script which build automatically all elements in Netbox using API request and Python language<br>
 Tested with:<br>
 - Netbox v2.9.2
-- Python 3.8.2 
+- Python 3.6.8 
 
 # HowTo
 - check diagram folder for topology example
