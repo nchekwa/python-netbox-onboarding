@@ -4,11 +4,7 @@ if environ.get("DEBUG") is not None:
 
 import os
 import netbox.settings
-<<<<<<< HEAD
 from netbox.config_yaml import Config_Yaml
-=======
-from netbox.yaml import Yaml
->>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
 
 def init():
     global yaml
@@ -28,9 +24,5 @@ def init_http_header():
 
 def load_yaml(config_path):
     netbox.settings.init() 
-<<<<<<< HEAD
     netbox.settings.yaml = Config_Yaml(config_path).import_variables_from_file()
-=======
-    netbox.settings.yaml = Yaml(config_path).import_variables_from_file()
->>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
     netbox.settings.init_http_header()

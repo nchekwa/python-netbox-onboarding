@@ -13,7 +13,6 @@ from pprint import pprint
 import requests
 import json
 import re
-<<<<<<< HEAD
 import glob
 import os
 import yaml
@@ -21,11 +20,6 @@ import copy
 
 import netbox.settings
 from netbox.config_yaml import Config_Yaml
-=======
-
-import netbox.settings
-from netbox.yaml import Yaml
->>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
 
 from netbox import *
 from netbox.juniper import *
@@ -86,14 +80,9 @@ def create(urn, payload_object=None):
                 if(parameter == 'device'):
                     payload[parameter] = query('api/dcim/devices/',item.get(parameter),'id')
                 
-<<<<<<< HEAD
                 #if(parameter == 'interface'):
                 #    pprint(item)
                 #    payload[parameter] = query('api/dcim/interfaces/',item.get(parameter)+'@'+item.get('device'),'id')
-=======
-                if(parameter == 'interface'):
-                    payload[parameter] = query('api/dcim/interfaces/',item.get(parameter)+'@'+item.get('device'),'id')
->>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
 
                 if(parameter == 'termination_a_id' or parameter == 'termination_b_id'):
                     payload[parameter] = str(query('api/dcim/interfaces/',item.get(parameter),'id'))
@@ -104,11 +93,7 @@ def create(urn, payload_object=None):
                 if(parameter == 'primary_ip4' ):
                     payload[parameter] = str(query('api/ipam/ip-addresses/',item.get(parameter),'id'))
 
-<<<<<<< HEAD
                 if(parameter == 'role' and option == "prefixes"):
-=======
-                if(parameter == 'role' ):
->>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
                     payload[parameter] = str(query('api/ipam/roles/',item.get(parameter),'id'))
 
                 if(parameter == 'local_context_data' ):
@@ -126,15 +111,10 @@ def create(urn, payload_object=None):
 
         # Prevent duplicated create objects 
         if option == "ip-addresses":
-<<<<<<< HEAD
             payload['assigned_object_type'] = "dcim.interface"
             payload['assigned_object_id'] = query('api/dcim/interfaces/',item.get('interface'),'id')
             payload.pop('interface')
             ip = query('api/ipam/ip-addresses/',item.get('address'))
-=======
-            ip = query('api/ipam/ip-addresses/',item.get('address'))
-            #print(type(ip))
->>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
             if ip.get('id') and ip.get('vrf') == payload.get('vrf') and ip.get('tenant') == payload.get('tenant'):
                 print ('\033[93m[skip]  \033[0m ' + option + ': \033[1m' + ip['address'] + '\033[0m allready exist')
                 continue
@@ -158,7 +138,6 @@ def create(urn, payload_object=None):
             ##########################################################################################################
             # If IP was created for device / and if it is managment -> add this IP as primary_ipv4 in device
             if option == "ip-addresses" and payload.get("status") == "active" and payload.get("mgmt_only") == True :
-<<<<<<< HEAD
                 #pprint(item)
                 ip = query('api/ipam/ip-addresses/', item.get('address'))
                 #pprint(ip)
@@ -168,15 +147,6 @@ def create(urn, payload_object=None):
                     device_payload['id'] = ip['assigned_object']['device']['id']
                     device_payload['primary_ip4'] = ip['id']
                     patch('api/dcim/devices/', device_payload)
-=======
-                ip = query('api/ipam/ip-addresses/',item.get('address'))
-                if ip.get('id') and ip['interface']['name'] == payload_orig.get('interface') and ip['interface']['device']['name'] == payload_orig.get('device'):
-                    print('[update] devices: '+ip['interface']['device']['name']+ ': primary_ip4=>'+str(ip['address']))
-                    device_payload = dict()
-                    device_payload['id'] = ip['interface']['device']['id']
-                    device_payload['primary_ip4'] = ip['id']
-                    patch('api/dcim/devices/',device_payload)
->>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
                     pass
             
             # If we create cable connection for interconnect - we need to update interfaces descriptions on each device and set MTU9192
@@ -236,13 +206,8 @@ def query(urn,search_name,out_parameter=None):
 
     # Define URL
     url = netbox.settings.yaml['netbox_url'] + urn + '?' + search
-<<<<<<< HEAD
     #print(url)
 
-=======
-    #print (url)
-    #return
->>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
     rest_call = requests.get(url, headers=netbox.settings.headers)
     #print(rest_call.json())
     #print(rest_call.status_code)
@@ -290,7 +255,6 @@ def patch(urn,payload=None):
         print ('\033[91m[failed]\033[0m failed to patch ' + option + ' \033[1m' + str(id) + '\033[0m' )
         if environ.get("DEBUG") is not None:
             pprint (rest_call.json())
-<<<<<<< HEAD
 
 def devicetypes(vendor):
     print ('\033[92m[ok]    \033[0m Device Types - folder: config/devicetypes/' + vendor + ' - checking')
@@ -347,5 +311,3 @@ def devicetypes(vendor):
                         netbox.create('api/dcim/'+component[:-1]+'-templates/', inter_key)
             
 
-=======
->>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
