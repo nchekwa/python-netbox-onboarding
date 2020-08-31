@@ -22,14 +22,21 @@ import json
 import yaml
 import time
 import netbox
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
 from netbox import *
 
 
 
 import netbox.settings
+<<<<<<< HEAD
 from netbox.config_yaml import Config_Yaml
+=======
+from netbox.yaml import Yaml
+>>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
 
 
 if __name__ == "__main__":
@@ -43,10 +50,15 @@ if __name__ == "__main__":
     netbox.settings.load_yaml(kwargs['config'])
 
     # Create pre-defined Juniper Manufacture/Devices
+<<<<<<< HEAD
     netbox.devicetypes('Juniper')
     #netbox.devicetypes('Cisco')
    
 '''
+=======
+    netbox.juniper.Provision()
+    
+>>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
     # 1) Create Tenants: CompanyA/B
     netbox.create('api/tenancy/tenants/')
 
@@ -77,4 +89,7 @@ if __name__ == "__main__":
     
     # 10)
     netbox.create('api/dcim/cables/')
+<<<<<<< HEAD
 '''
+=======
+>>>>>>> 7d7437bb482d12001aaa4aa5fe8e19c1023ae6d5
