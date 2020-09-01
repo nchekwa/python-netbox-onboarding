@@ -1,5 +1,5 @@
 # Release Hostory:
-- v.0.3 [20200001]
+- v.0.3 [20200901]
   - add interface create option just after create devices
   - add option to create automaticly interface during create IP Address if interface name match ^lo|^em
 
@@ -12,3 +12,6 @@
   - when create device and then create IP assign to managment interface - patch automaticly set managment IP under device
 
 
+# ToDo:
+- add support create/assign racks
+- add support create/assign vrfs
