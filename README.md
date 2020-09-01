@@ -13,7 +13,7 @@ Tested with:<br>
 - run:<br>
 
 ```console
-bash# cd /opt/python_netbox_create_dc
+bash# cd /opt/python-netbox-onboarding
 bash# python3 configure_netbox.py -h
 usage: configure_netbox.py [-h] [-c CONFIG]
 
@@ -34,8 +34,8 @@ optional arguments:
 Use predefined device types from official repo: netbox-community/devicetype-library
 ```bash
 yum install -y unzip
-cd /opt/python_netbox_create_dc/config/devicetypes
+cd /opt/python-netbox-onboarding/config/devicetypes
 wget https://github.com/netbox-community/devicetype-library/archive/master.zip -O /tmp/master.zip
 unzip  /tmp/master.zip -d /tmp/
-cp -R /tmp/devicetype-library-master/device-types/* /opt/python_netbox_create_dc/config/devicetypes
+cp -R /tmp/devicetype-library-master/device-types/* /opt/python-netbox-onboarding/config/devicetypes
 ```
