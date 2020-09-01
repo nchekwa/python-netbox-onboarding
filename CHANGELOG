@@ -1,13 +1,13 @@
 # Release History:
-- v.0.3 [20200901]
+- v0.3 [20200901]
   - add interface create option just after create devices
   - add option to create automatically interface during create IP Address if interface name match ^lo|^em
 
-- v.0.2 [20200831]
+- v0.2 [20200831]
   - update for support changes from 2.9.x (all version before are not supported)
   - implement integration with netbox-community/devicetype-library
 
-- v.0.1 [20200728] - First Release
+- v0.1 [20200728] - First Release
   - 20200810 - one of setting function (init http headers) was rollback + added some additional parameters in demo variable yaml
   - when create device and then create IP assign to managment interface - patch automaticly set managment IP under device
 
