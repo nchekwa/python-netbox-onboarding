@@ -245,58 +245,42 @@ ip-addresses:
 # types: cat3, cat5, cat5e, cat6, cat6a, cat7, dac-active, dac-passive, mrj21-trunk, coaxial, mmf, mmf-om1, mmf-om2, mmf-om3, mmf-om4, smf, smf-os1, smf-os2, aoc, power 
 cables:
   - termination_a_id: xe-0/0/0@Spine-20
-    termination_a_type: 'dcim.interface'
     termination_b_id: xe-0/0/0@Leaf-30
-    termination_b_type: 'dcim.interface'
     type: "smf-os2"
     status: connected
     label: interconnect
   - termination_a_id: xe-0/0/1@Spine-20
-    termination_a_type: 'dcim.interface'
     termination_b_id: xe-0/0/0@Leaf-31
-    termination_b_type: 'dcim.interface'
     type: "smf-os2"
     status: connected
     label: interconnect
   - termination_a_id: xe-0/0/2@Spine-20
-    termination_a_type: 'dcim.interface'
     termination_b_id: xe-0/0/0@Leaf-32
-    termination_b_type: 'dcim.interface'
     type: "smf-os2"
     status: connected
     label: interconnect
   - termination_a_id: xe-0/0/3@Spine-20
-    termination_a_type: 'dcim.interface'
     termination_b_id: xe-0/0/0@Leaf-33
-    termination_b_type: 'dcim.interface'
     type: "smf-os2"
     status: connected
     label: interconnect
   - termination_a_id: xe-0/0/0@Spine-21
-    termination_a_type: 'dcim.interface'
     termination_b_id: xe-0/0/1@Leaf-30
-    termination_b_type: 'dcim.interface'
     type: "smf-os2"
     status: connected
     label: interconnect
   - termination_a_id: xe-0/0/1@Spine-21
-    termination_a_type: 'dcim.interface'
     termination_b_id: xe-0/0/1@Leaf-31
-    termination_b_type: 'dcim.interface'
     type: "smf-os2"
     status: connected
     label: interconnect
   - termination_a_id: xe-0/0/2@Spine-21
-    termination_a_type: 'dcim.interface'
     termination_b_id: xe-0/0/1@Leaf-32
-    termination_b_type: 'dcim.interface'
     type: "smf-os2"
     status: connected
     label: interconnect
   - termination_a_id: xe-0/0/3@Spine-21
-    termination_a_type: 'dcim.interface'
     termination_b_id: xe-0/0/1@Leaf-33
-    termination_b_type: 'dcim.interface'
     type: "smf-os2"
     status: connected
     label: interconnect

@@ -1,4 +1,7 @@
 # Release History:
+- v0.3a [20200901]
+  - remove from config 'cable'/'termination_X_type' parameter - by default we assume value: dcim.interface
+
 - v0.3 [20200901]
   - add interface create option just after create devices
   - add option to create automatically interface during create IP Address if interface name match ^lo|^em
@@ -10,7 +13,6 @@
 - v0.1 [20200728] - First Release
   - 20200810 - one of setting function (init http headers) was rollback + added some additional parameters in demo variable yaml
   - when create device and then create IP assign to managment interface - patch automaticly set managment IP under device
-
 
 # ToDo:
 - add support create/assign racks

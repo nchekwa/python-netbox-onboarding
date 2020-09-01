@@ -137,6 +137,15 @@ def create(urn, payload_object=None):
                 print ('\033[93m[skip]  \033[0m ' + option + ': \033[1m' + payload['prefix'] + '\033[0m allready exist')
                 continue
 
+        if option == "cables":
+            # if we not define in config "termination_X_type"
+            # we assume that we will use type=dcim.interface
+            if item.get('termination_a_type') is None:
+                payload['termination_a_type'] = "dcim.interface"
+
+            if item.get('termination_b_type') is None:
+                payload['termination_b_type'] = "dcim.interface"
+
         #print(payload)
         rest_call = requests.post(url, headers=netbox.settings.headers, data=json.dumps(payload))
         #print(payload)
@@ -166,7 +175,7 @@ def create(urn, payload_object=None):
                 termination_a_id = query('api/dcim/interfaces/',item.get('termination_a_id'),'id')
                 termination_b_id = query('api/dcim/interfaces/',item.get('termination_b_id'),'id')
 
-                print('[update] interface: '+payload_orig['termination_a_id'] )
+                print('[update] interface: '+payload_orig['termination_a_id']+ " - set interconnect inerface description and mtu" )
                 if_a_payload = dict()
                 if_a_payload['id'] = termination_a_id
                 if_a_payload['mtu'] = 9192
@@ -174,7 +183,7 @@ def create(urn, payload_object=None):
                 if_a_payload['description'] = str('*** '+payload_orig['termination_a_id']+'<--|-->'+ payload_orig['termination_b_id'] +' ***')
                 patch('api/dcim/interfaces/',if_a_payload)
 
-                print('[update] interface: '+payload_orig['termination_b_id'] )
+                print('[update] interface: '+payload_orig['termination_b_id']+ " - set interconnect inerface description and mtu" )
                 if_b_payload = dict()
                 if_b_payload['id'] = termination_b_id
                 if_b_payload['mtu'] = 9192
