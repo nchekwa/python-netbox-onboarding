@@ -31,14 +31,14 @@ device-roles:
     color: 00cc00       # green
 
 # Create manufacturers
-# ** Juniper ** manufacturer is created automaticly
+# ** Juniper ** manufacturer is created based on netbox-community/devicetype-library paramyter.
+# For include othere vendors please check main .py script function ie. [ netbox.devicetypes('Brocade') ].
 manufacturers:
   - name: 'Arista'
   - name: 'Cisco'
     description: "Cisco Networks"
 
 # Create platform
-# ** Juniper ** Junos platform is created with a junos napalm_driver automaticly
 platforms:
   - name: cisco
     napalm_driver: cisco  
@@ -54,9 +54,7 @@ platforms:
     manufacturer: Juniper
 
 # Create predefined device-types
-# In this API request - name value not exist so we asume that first parameter would be treated as 'name' (->model)
-#
-# ** Juniper ** some devices are automaticly created = check netbox/juniper.py
+# In this API request - 'name' parameter not exist so we asume that first parameter would be treated as 'name' (->model)
 device-types:
   - model: Nexus-9000
     manufacturer: Cisco
@@ -76,7 +74,7 @@ prefixes:
   - prefix: 10.64.0.0/24
     role: loopback
 
-# devices you want to create. the devices are assigned to the tenant.
+# devices you want to create.
 devices: 
   - name: Spine-20
     device_type: VQFX-10000
@@ -145,7 +143,7 @@ devices:
           asn: 65033
           key: mybgpkey
 
-# Add additional interfaces
+# Add additional interfaces if needed (example)
 interfaces:
   - device: Spine-20
     name: lo0.1
@@ -155,8 +153,8 @@ interfaces:
 # IP addresses
 ip-addresses:
   # out_of_band_management
-  # if status == "active" (and) mgmt_only == True --> add this IP as active "primary_ipv4" in device
-  #
+  # if status == "active" (and) mgmt_only == True --> add this IP as active "primary_ipv4" in the device
+  # *** parameter: interface *** is not standard API parameter
   - address: 10.240.40.20/22
     interface: em0@Spine-20
     mgmt_only: True
@@ -243,6 +241,7 @@ ip-addresses:
 
 # define how the interfaces are connected (physical topology). 
 # types: cat3, cat5, cat5e, cat6, cat6a, cat7, dac-active, dac-passive, mrj21-trunk, coaxial, mmf, mmf-om1, mmf-om2, mmf-om3, mmf-om4, smf, smf-os1, smf-os2, aoc, power 
+# *** parameter: termination_X_id *** is not standard API parameter
 cables:
   - termination_a_id: xe-0/0/0@Spine-20
     termination_b_id: xe-0/0/0@Leaf-30
