@@ -39,14 +39,14 @@ if __name__ == "__main__":
     kwargs = vars(args)
     print('Running. Press CTRL-C to exit.')
 
+    ##############################################################################
     # Innit global config modular share
     netbox.settings.load_yaml(kwargs['config'])
 
     # Create pre-defined Juniper Manufacture/Devices
     netbox.devicetypes('Juniper')
-    #netbox.devicetypes('Cisco')
    
-'''
+    ##############################################################################
     # 1) Create Tenants: CompanyA/B
     netbox.create('api/tenancy/tenants/')
 
@@ -56,25 +56,31 @@ if __name__ == "__main__":
     # 3) Create Device Roles: leaf/spine
     netbox.create('api/dcim/device-roles/')
 
-    # 4) ie. Juniper
+    # 4) Create Manufacturer ie. Juniper
     netbox.create('api/dcim/manufacturers/')
 
-    # 5) ie. junos
+    # 5) Create Platform ie. junos
     netbox.create('api/dcim/platforms/')
     
-    # 6) ie. vqfx-10000
+    # 6) Create device schema ie. Nexus-9000
     netbox.create('api/dcim/device-types/')
 
     # 7) Ceate Role leaf_switch / spine
     netbox.create('api/ipam/roles/')
     netbox.create('api/ipam/prefixes/')
 
-    # 8) 	
+    # 8) Create Device + addtional interfaces if not included in Device-Type
     netbox.create('api/dcim/devices/')
+    netbox.create('api/dcim/interfaces/')
 
-    # 9)
+    # 9) Create IP-Addresses
+    # not standard field: 
+    # interface: <if-name>@<device-name>
+    # ie. interface: xe-0/0/0@Leaf-30
     netbox.create('api/ipam/ip-addresses/')
     
-    # 10)
+    # 10) Create cable interconnects between devices
+    # not standard fields [termination_a_id, termination_b_id]: 
+    # termination_a_id: <if-name>@<device-name>
+    # ie. termination_a_id: xe-0/0/0@Leaf-30
     netbox.create('api/dcim/cables/')
-'''

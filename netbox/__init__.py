@@ -22,8 +22,6 @@ import netbox.settings
 from netbox.config_yaml import Config_Yaml
 
 from netbox import *
-from netbox.juniper import *
-
 
 def create(urn, payload_object=None):
     
@@ -79,7 +77,7 @@ def create(urn, payload_object=None):
                 
                 if(parameter == 'device'):
                     payload[parameter] = query('api/dcim/devices/',item.get(parameter),'id')
-                
+ 
                 #if(parameter == 'interface'):
                 #    pprint(item)
                 #    payload[parameter] = query('api/dcim/interfaces/',item.get(parameter)+'@'+item.get('device'),'id')
@@ -111,13 +109,26 @@ def create(urn, payload_object=None):
 
         # Prevent duplicated create objects 
         if option == "ip-addresses":
-            payload['assigned_object_type'] = "dcim.interface"
-            payload['assigned_object_id'] = query('api/dcim/interfaces/',item.get('interface'),'id')
-            payload.pop('interface')
+            # Check if IP exist? If exist - conntinue /-> skip this interaction
             ip = query('api/ipam/ip-addresses/',item.get('address'))
             if ip.get('id') and ip.get('vrf') == payload.get('vrf') and ip.get('tenant') == payload.get('tenant'):
                 print ('\033[93m[skip]  \033[0m ' + option + ': \033[1m' + ip['address'] + '\033[0m allready exist')
                 continue
+            # Check if interface exist 
+            if item.get('interface'):
+                id_interface = query('api/dcim/interfaces/',item.get('interface'),'id')
+                # if loopback type - if not exist - auto create interface 
+                if type(id_interface) != int and re.match(r'^lo|^em', item.get('interface') ):
+                    new_interface = dict()
+                    new_interface['type']   = "virtual"
+                    new_interface['name']   = item['interface'].split('@')[0]
+                    new_interface['device'] = query('api/dcim/devices/',item['interface'].split('@')[1],'id') 
+                    netbox.create('api/dcim/interfaces/', new_interface)
+                    id_interface = query('api/dcim/interfaces/',item.get('interface'),'id')
+                payload['assigned_object_type'] = "dcim.interface"
+                payload['assigned_object_id'] = id_interface
+                # Remove parameter interface from payload [we need only assigned_object]
+                payload.pop('interface')
 
         if option == "prefixes":
             prefix = query('api/ipam/prefixes/',item.get('prefix'))
@@ -128,6 +139,7 @@ def create(urn, payload_object=None):
 
         #print(payload)
         rest_call = requests.post(url, headers=netbox.settings.headers, data=json.dumps(payload))
+        #print(payload)
         if rest_call.status_code == 201:
             print ('\033[92m[ok]    \033[0m ' + option + ': \033[1m' + item['name'] + '\033[0m successfully created')
             
@@ -169,7 +181,6 @@ def create(urn, payload_object=None):
                 if_b_payload['tag'] = 'interconnect'
                 if_b_payload['description'] = str('*** '+payload_orig['termination_b_id']+'<--|-->'+ payload_orig['termination_a_id'] +' ***')
                 patch('api/dcim/interfaces/',if_b_payload)
-
 
             ##########################################################################################################
 
