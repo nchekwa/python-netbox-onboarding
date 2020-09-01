@@ -13,6 +13,7 @@ Tested with:<br>
 - run:<br>
 
 ```console
+bash# cd /opt/python_netbox_create_dc
 bash# python3 configure_netbox.py -h
 usage: configure_netbox.py [-h] [-c CONFIG]
 
@@ -22,10 +23,11 @@ optional arguments:
                         YAML File with configuration (default='config/variables.yaml')
 ```
 
+# Examples screenshots
 ![Example1](doc/img/example_2.png)
 ![Example2](doc/img/example_1.png)
-
-'Failed' is only as exemple how script react on existing elements in Netbox
+![Example3](doc/img/Screenshot_3.png)
+![Example4](doc/img/Screenshot_4.png)
 
 
 # Config-Device-Types
