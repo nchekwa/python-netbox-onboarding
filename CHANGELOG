@@ -1,7 +1,7 @@
 # Release Hostory:
 - v.0.3 [20200901]
   - add interface create option just after create devices
-  - add option to create automaticly interface during create IP Address if interface name match ^lo|^em
+  - add option to create automatically interface during create IP Address if interface name match ^lo|^em
 
 - v.0.2 [20200831]
   - update for support changes from 2.9.x (all version before are not supported)
