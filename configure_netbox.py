@@ -3,9 +3,7 @@
 # This script takes the variables defined in the file variables.yml 
 # and make rest calls to Netbox to configure it.
 #
-# Created by: Artur Zdolinski
-# Date: 2020-07-21
-# Tested with Python3 / Netbox v2.8.7
+# Created by: Nchekwa/Artur Zdolinski
 ###################################################
 # > bash# export PYTHONDONTWRITEBYTECODE=1
 # > bash# export DEBUG=1           / unset DEBUG
@@ -22,9 +20,7 @@ import json
 import yaml
 import netbox
 
-
 from netbox import *
-
 import netbox.settings
 from netbox.config_yaml import Config_Yaml
 
