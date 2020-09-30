@@ -22,6 +22,7 @@ optional arguments:
   -c CONFIG, --config CONFIG
                         YAML File with configuration (default='config/variables.yaml')
 ```
+YAML Config example: https://github.com/azdolinski/python-netbox-onboarding/blob/master/config/variables.yaml
 
 # Examples screenshots
 ![Example1](doc/img/example_2.png)
@@ -31,7 +32,8 @@ optional arguments:
 
 
 # Config-Device-Types
-Use predefined device types from official repo: netbox-community/devicetype-library
+Include predefined device types (like: ![Juniper](https://github.com/netbox-community/devicetype-library/tree/master/device-types/Juniper), ![Cisco](https://github.com/netbox-community/devicetype-library/tree/master/device-types/Cisco), ![Arista](https://github.com/netbox-community/devicetype-library/tree/master/device-types/Arista) etc.) from official repo: ![netbox-community/devicetype-library](https://github.com/netbox-community/devicetype-library)<br>
+To sync this project with netbox-comunity devicetype-library:
 ```bash
 yum install -y unzip
 cd /opt/python-netbox-onboarding/config/devicetypes
