@@ -2,8 +2,8 @@
 # Edit this file to define the details to configure on Netbox
 
 # netbox vars
-netbox_url: 'http://192.168.254.90/'     # //https is not supported yet
-netbox_token: '678bcbfccbbcb6a59069438b89b5d0f9e4a3081a'
+netbox_url: 'http://192.168.1.10/'     # //https is not supported yet
+netbox_token: '0123456789abcdef0123456789abcdef01234567'
 
 # netbox tenants you want to create.
 tenants:
@@ -203,37 +203,44 @@ ip-addresses:
   #
   # devices_interconnection
   #
-  - address: 10.30.20.1/30
+  - address: 10.30.20.0/31
     interface: xe-0/0/0@Spine-20
-  - address: 10.30.20.5/30
-    interface: xe-0/0/1@Spine-20
-  - address: 10.30.20.9/30
-    interface: xe-0/0/2@Spine-20
-  - address: 10.30.20.13/30
-    interface: xe-0/0/3@Spine-20
-  - address: 10.30.21.1/30
-    interface: xe-0/0/0@Spine-21
-  - address: 10.30.21.5/30
-    interface: xe-0/0/1@Spine-21
-  - address: 10.30.21.9/30
-    interface: xe-0/0/2@Spine-21
-  - address: 10.30.21.13/30
-    interface: xe-0/0/3@Spine-21
-  - address: 10.30.20.2/30
+  - address: 10.30.20.1/31
     interface: xe-0/0/0@Leaf-30
-  - address: 10.30.21.2/30
+
+  - address: 10.30.20.2/31
+    interface: xe-0/0/1@Spine-20
+  - address: 10.30.20.3/31
     interface: xe-0/0/1@Leaf-30
-  - address: 10.30.20.6/30
+
+  - address: 10.30.20.4/31
+    interface: xe-0/0/2@Spine-20
+  - address: 10.30.20.5/31
     interface: xe-0/0/0@Leaf-31
-  - address: 10.30.21.6/30
+
+  - address: 10.30.20.6/31
+    interface: xe-0/0/3@Spine-20
+  - address: 10.30.20.7/31
     interface: xe-0/0/1@Leaf-31
-  - address: 10.30.20.10/30 
+
+  - address: 10.30.20.8/31
+    interface: xe-0/0/0@Spine-21
+  - address: 10.30.20.9/31 
     interface: xe-0/0/0@Leaf-32
-  - address: 10.30.21.10/30
+
+  - address: 10.30.20.10/31
+    interface: xe-0/0/1@Spine-21
+  - address: 10.30.20.11/31
     interface: xe-0/0/1@Leaf-32
-  - address: 10.30.20.14/30
+
+  - address: 10.30.20.12/31
+    interface: xe-0/0/2@Spine-21
+  - address: 10.30.20.13/31
     interface: xe-0/0/0@Leaf-33
-  - address: 10.30.21.14/30
+
+  - address: 10.30.20.14/31
+    interface: xe-0/0/3@Spine-21
+  - address: 10.30.20.15/31
     interface: xe-0/0/1@Leaf-33
 
 
